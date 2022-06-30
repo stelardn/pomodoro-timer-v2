@@ -127,12 +127,14 @@ button {
   fill: var(--primary-color);
 }
 
-.sounds button svg path:nth-child(1) {
+.sounds .bg-button {
   fill: var(--bg-btn-color);
 }
 
 .controls button svg path:nth-child(1),
-.sounds button svg path:nth-child(2) {
+.sounds svg path,
+.sounds rect,
+.sounds circle {
   fill: var(--primary-color);
 }
 
