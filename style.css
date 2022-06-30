@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  background-color: var(--bg-color);
+}
+
+.light-theme {
+  --bg-color: #fff;
+  --bg-btn-color: #E1E1E6;
+  --bg-selected-button: #02799D;
+  --primary-color: #323238;
+}
+
+.dark-theme {
+  --bg-color: #121214;
+  --bg-btn-color: #29292E;
+  --bg-selected-button: #0A3442;
+  --primary-color: #fff;
+}
+
+header {
+  align-self: start;
+  justify-self: end;
+}
+
+header button {
+  padding: 5rem 5rem 0 0;
+}
+
+.page {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  padding: 5px;
+
+  align-self: start;
+  /* justify-self: center; */
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* gap: 7px; */
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.light-mode-btn,
+.dark-mode-btn {
+  padding: 6rem;
+  height: 4rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+time {
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(6rem, 6rem + 3vw, 12rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.controls {
+  display: flex;
+  gap: 2rem;
+}
+
+.controls button svg {
+  height: clamp(0.6rem, 0.6 rem + 2vw, 1.6rem);
+  width: clamp(0.6rem, 0.6 rem + 2vw, 1.6rem);
+}
+
+
+button {
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.sounds {
+  justify-self: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+}
+
+.sounds button svg {
+  
+  width: clamp(8rem, 8rem + 4vw, 13rem);
+  height: clamp(8rem, 8rem + 4vw, 13rem);
+  /* position: relative; */
+}
+
+.sounds .selected-button:first-child{
+  fill: var(--bg-selected-button);
+}
+
+.sounds .selected-button:nth-child(2) {
+  fill: var(--bg-color);
+}
+
+.controls button svg path:first-child, 
+.pause svg path
+{
+  fill: var(--primary-color);
+}
+
+.sounds button svg path:nth-child(1) {
+  fill: var(--bg-btn-color);
+}
+
+.controls button svg path:nth-child(1),
+.sounds button svg path:nth-child(2) {
+  fill: var(--primary-color);
+}
+
+
+.time-up {
+  animation: timerBlinks 500ms;
+  animation-iteration-count: 3;
+}
+
+circle {
+  /* position: absolute; */
+  z-index: 3;
+}
+
+rect {
+  cursor: all-scroll;
+}
+
+@keyframes timerBlinks {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+
