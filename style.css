@@ -163,5 +163,14 @@ rect {
   }
 }
 
+@media (max-width: 650px) {
+  .page {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+}
+
 
 
