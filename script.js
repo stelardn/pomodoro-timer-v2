@@ -23,16 +23,16 @@ const coffeeshopVolumeBar = document.querySelector('.coffeeshop rect');
 const fireplaceVolumeBar = document.querySelector('.fireplace rect');
 
 // circle positions
-let forestVolCirclePos = forestVolumeButton.getAttribute('cx');
-let rainVolCirclePos= rainVolumeButton.getAttribute('cx');
+let forestVolCirclePos; // = forestVolumeButton.getAttribute('cx');
+let rainVolCirclePos = rainVolumeButton.getAttribute('cx');
 let coffeeshopVolCirclePos = coffeeshopVolumeButton.getAttribute('cx');
 let fireplaceVolCirclePos = fireplaceVolumeButton.getAttribute('cx');
 
 // volume based on circle position
-let currentForestVolume = (forestVolCirclePos - 32) * 1/88;
-let currentRainVolume = (rainVolCirclePos - 32) * 1/88;
-let currentCoffeeshopVolume = (coffeeshopVolCirclePos - 32) * 1/88;
-let currentFireplaceVolume = (fireplaceVolCirclePos - 32) * 1/88;
+let currentForestVolume;
+let currentRainVolume;
+let currentCoffeeshopVolume;
+let currentFireplaceVolume;
 
 // Logic controls
 let minutesSet = document.querySelector('.minutes');
@@ -93,35 +93,37 @@ function soundButtonHandler(sound, button) {
     button.classList.remove('selected-button');
     return;
   }
-
+  volumeHandler(sound, 0.5);
   playSound(sound);
   button.classList.add('selected-button');
 }
 
 function volumeHandler (sound, currentVolume) {
   sound.volume = currentVolume;
-  // rainSound.volume = currentRainVolume;
-  // coffeeshopSound.volume = currentCoffeeshopVolume;
-  // fireplaceSound.volume = currentFireplaceVolume;
 }
 
 let pos;
-let reference;
+let barPosition;
+let mousePos;
 
-function posGetter(e) {
+function referenceGetter(bar) {
+  barPosition = bar.getBoundingClientRect().x;
+  return barPosition;
+}
+
+
+function mousePosGetter(e) {
   e = e || window.Event;
-  pos = e.clientX - reference;
-  return pos;
+  mousePos = e.clientX;
+  return mousePos;
 }
 
 function volumeBarHandler (sound, volumeButton, volCirclePos, currentVolume) {
   volumeButton.setAttribute('cx', pos);
   volCirclePos = volumeButton.getAttribute('cx');
-  currentVolume = (volCirclePos - 32) * 1/88;
+  currentVolume = (volCirclePos - 24) * 1/90;
   volumeHandler(sound, currentVolume);
 }
-
-
 
 
 // Timer functions
@@ -220,9 +222,6 @@ function toggleTheme () {
   body.classList.toggle('dark-theme');
 }
 
-
-
-
 // events
 
 playButton.addEventListener('click', function () {
@@ -295,32 +294,32 @@ darkModeButton.addEventListener('click', function () {
 
 forestVolumeBar.addEventListener('mouseup', function (e) {
   e = e || window.Event;
-  // x0 = 681 px on window, 32px on button
-  reference = 681 - 32;
-  posGetter(e);
+  referenceGetter(forestVolumeBar);
+  mousePosGetter(e);
+  pos = mousePos - barPosition + 24;
   volumeBarHandler(forestSound, forestVolumeButton, forestVolCirclePos, currentForestVolume);
-})
-
-coffeeshopVolumeBar.addEventListener('mouseup', function (e) {
-  e = e || window.Event;
-  // x0 = 681 px on window, 32px on button
-  reference = 681 - 32;
-  posGetter(e);
-  volumeBarHandler(coffeeshopSound, coffeeshopVolumeButton, coffeeshopVolCirclePos, currentCoffeeshopVolume);
 })
 
 rainVolumeBar.addEventListener('mouseup', function (e) {
   e = e || window.Event;
-  // x0 = 823 px on window, 32px on button
-  reference = 823 - 32;
-  posGetter(e);
+  referenceGetter(rainVolumeBar);
+  mousePosGetter(e);
+  pos = mousePos - barPosition + 24;
   volumeBarHandler(rainSound, rainVolumeButton, rainVolCirclePos, currentRainVolume);
+})
+
+coffeeshopVolumeBar.addEventListener('mouseup', function (e) {
+  e = e || window.Event;
+  referenceGetter(coffeeshopVolumeBar);
+  mousePosGetter(e);
+  pos = mousePos - barPosition + 24;
+  volumeBarHandler(coffeeshopSound, coffeeshopVolumeButton, coffeeshopVolCirclePos, currentCoffeeshopVolume);
 })
 
 fireplaceVolumeBar.addEventListener('mouseup', function (e) {
   e = e || window.Event;
-  // x0 = 823 px on window, 32px on button
-  reference = 823 - 32;
-  posGetter(e);
+  referenceGetter(fireplaceVolumeBar);
+  mousePosGetter(e);
+  pos = mousePos - barPosition + 24;
   volumeBarHandler(fireplaceSound, fireplaceVolumeButton, fireplaceVolCirclePos, currentFireplaceVolume);
 })

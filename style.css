@@ -108,8 +108,8 @@ button {
 
 .sounds button svg {
   
-  width: clamp(8rem, 8rem + 4vw, 13rem);
-  height: clamp(8rem, 8rem + 4vw, 13rem);
+  /* width: clamp(8rem, 8rem + 4vw, 13rem); */
+  /* height: clamp(8rem, 8rem + 4vw, 13rem); */
   /* position: relative; */
 }
 
