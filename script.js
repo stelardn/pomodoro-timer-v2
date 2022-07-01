@@ -160,6 +160,7 @@ function countdown() {
         isResting = false;
         nextCounter = userMinutes;
       } else {
+        increaseScore();
         isResting = true;
         lapsCounter++;
         if (lapsCounter >= 4) {
@@ -210,6 +211,16 @@ function stopNow() {
   isClocking = false;
 }
 
+
+// Score functions
+scoreDisplay = document.querySelector('#pomodores').textContent;
+scores = Number(scoreDisplay);
+
+function increaseScore() {
+  scores++;
+  scoreDisplay = String(scores).padStart(3,'0');
+  document.querySelector('#pomodores').textContent = scoreDisplay;
+}
 
 
 

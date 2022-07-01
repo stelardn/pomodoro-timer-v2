@@ -30,11 +30,27 @@ body {
 
 header {
   align-self: start;
-  justify-self: end;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score {
+  margin: 5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  color: var(--primary-color);
+  font-size: 5rem;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 header button {
   padding: 5rem 5rem 0 0;
+  display: flex;
+  align-items: center;
 }
 
 .page {
@@ -106,12 +122,6 @@ button {
 
 }
 
-.sounds button svg {
-  
-  /* width: clamp(8rem, 8rem + 4vw, 13rem); */
-  /* height: clamp(8rem, 8rem + 4vw, 13rem); */
-  /* position: relative; */
-}
 
 .sounds .selected-button:first-child{
   fill: var(--bg-selected-button);
