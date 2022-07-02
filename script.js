@@ -80,13 +80,16 @@ function stopThisSound (sound) {
   soundIsPlaying = false;
 }
 
-function soundButtonHandler(sound, button) {
+function soundButtonHandler(sound, button, volumeButton, volCirclePos, currentVolume) {
   if (soundIsPlaying) {
     stopThisSound(sound);
     button.classList.remove('selected-button');
+    pos = 24;
+    volumeBarHandler(sound, volumeButton, volCirclePos, currentVolume);
     return;
   }
-  volumeHandler(sound, 0.5);
+  pos = 69;
+  volumeBarHandler(sound, volumeButton, volCirclePos, currentVolume);
   playSound(sound);
   button.classList.add('selected-button');
 }
@@ -292,19 +295,19 @@ removeMinutes.addEventListener('click', function () {
 })
 
 forestButton.addEventListener('click', function () {
-  soundButtonHandler(forestSound, forestButton);
+  soundButtonHandler(forestSound, forestButton, forestVolumeButton, forestVolCirclePos, currentForestVolume);
 })
 
 coffeeshopButton.addEventListener('click', function () {
-  soundButtonHandler(coffeeshopSound, coffeeshopButton);
+  soundButtonHandler(coffeeshopSound, coffeeshopButton, coffeeshopVolumeButton, coffeeshopVolCirclePos, currentCoffeeshopVolume);
 })
 
 fireplaceButton.addEventListener('click', function() {
-  soundButtonHandler(fireplaceSound, fireplaceButton);
+  soundButtonHandler(fireplaceSound, fireplaceButton, fireplaceVolumeButton, fireplaceVolCirclePos, currentFireplaceVolume);
 })
 
 rainButton.addEventListener('click', function () {
-  soundButtonHandler(rainSound, rainButton);
+  soundButtonHandler(rainSound, rainButton, rainVolumeButton, rainVolCirclePos, currentRainVolume);
 });
 
 lightModeButton.addEventListener('click', function() {
