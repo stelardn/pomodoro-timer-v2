@@ -64,7 +64,7 @@ const timeUpSound = new Audio('./sounds/kitchen-timer.mp3');
 
 
 
-// Functions
+// FUNCTIONS
 
 // Sound functions
 
@@ -74,13 +74,6 @@ function playSound (sound) {
   sound.loop = true;
 }
 
-// function stopAllSounds () {
-//   forestSound.pause();
-//   rainSound.pause();
-//   coffeeshopSound.pause();
-//   fireplaceSound.pause();
-// } 
-// This one I would use to stop the currently playing sound when I select another sound button without unselecting the current one, but I realized they actually sound nice when played together 
 
 function stopThisSound (sound) {
   sound.pause();
@@ -159,11 +152,13 @@ function countdown() {
       if (isResting) {
         isResting = false;
         nextCounter = userMinutes;
+        showMessage('Vamos lá! De volta ao foco!')
       } else {
         increaseScore();
         isResting = true;
         lapsCounter++;
         if (lapsCounter >= 4) {
+          showMessage('Hora de dar uma pausa mais longa!')
           nextCounter = 30;
           lapsCounter = 0;
         } else {
@@ -211,15 +206,32 @@ function stopNow() {
   isClocking = false;
 }
 
+// Message functions
+const message = document.querySelector('.message');
+
+function showMessage(messageDisplay) {
+  document.querySelector('.message').textContent = messageDisplay;
+  message.classList.add('show');
+  setTimeout(function () {
+    message.classList.remove('show');
+  }, 8000)
+}
+
 
 // Score functions
-scoreDisplay = document.querySelector('#pomodores').textContent;
-scores = Number(scoreDisplay);
+let pomodores = document.querySelector('.pomodores');
+let scoreDisplay = document.querySelector('.pomodores').textContent;
+let scores = Number(scoreDisplay);
 
 function increaseScore() {
   scores++;
   scoreDisplay = String(scores).padStart(3,'0');
-  document.querySelector('#pomodores').textContent = scoreDisplay;
+  document.querySelector('.pomodores').textContent = scoreDisplay;
+  showMessage(`Parabéns! Você plantou um tomate!\nDescanse um pouco!`)
+  pomodores.classList.add('update');
+  setTimeout (() => {
+    pomodores.classList.remove('update');
+  }, 1500)
 }
 
 
