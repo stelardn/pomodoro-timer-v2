@@ -1,4 +1,6 @@
 // CONTROL BUTTONS
+
+
 const playButton = document.querySelector('.play');
 const pauseButton = document.querySelector('.pause');
 const setButton = document.querySelector('.set');
@@ -62,6 +64,9 @@ const coffeeshopSound = new Audio('./sounds/cafeteria.wav'); // https://drive.go
 const fireplaceSound = new Audio('./sounds/lareira.wav'); // https://drive.google.com/file/d/1MakaBPxJvTa_whaSM3kEbRcxiVd1GRCB/view
 const timeUpSound = new Audio('./sounds/kitchen-timer.mp3');
 
+// PROMPT
+const promptInput = document.querySelector('.input-wrapper input');
+const promptButton = document.querySelector('.input-wrapper button');
 
 
 // FUNCTIONS
@@ -155,13 +160,13 @@ function countdown() {
       if (isResting) {
         isResting = false;
         nextCounter = userMinutes;
-        showMessage('Vamos lá! De volta ao foco!')
+        showMessage('Vamos lá! De volta ao foco!', 8000)
       } else {
         increaseScore();
         isResting = true;
         lapsCounter++;
         if (lapsCounter >= 4) {
-          showMessage('Hora de dar uma pausa mais longa!')
+          showMessage('Hora de dar uma pausa mais longa!', 8000)
           nextCounter = 30;
           lapsCounter = 0;
         } else {
@@ -212,12 +217,28 @@ function stopNow() {
 // Message functions
 const message = document.querySelector('.message');
 
-function showMessage(messageDisplay) {
+function showMessage(messageDisplay, displayTime) {
   document.querySelector('.message').textContent = messageDisplay;
   message.classList.add('show');
+  message.classList.remove('hide');
   setTimeout(function () {
+    message.classList.add('hide');
     message.classList.remove('show');
-  }, 8000)
+  }, displayTime)
+}
+
+// Prompt functions
+
+function getMinutes() {
+  userMinutes = Number(document.querySelector('#user-minutes').value);
+  if (userMinutes != currentMinutes && userMinutes) {
+    currentMinutes = userMinutes;
+  }
+  updateCounter(currentMinutes, 00);
+  message.classList.add('hide');
+  message.classList.remove('show');
+  promptInput.classList.add('hidden');
+  promptButton.classList.add('hidden'); 
 }
 
 
@@ -230,7 +251,7 @@ function increaseScore() {
   scores++;
   scoreDisplay = String(scores).padStart(3,'0');
   document.querySelector('.pomodores').textContent = scoreDisplay;
-  showMessage(`Parabéns! Você plantou um tomate!\nDescanse um pouco!`)
+  showMessage(`Parabéns! Você plantou um tomate!\nDescanse um pouco!`, 8000)
   pomodores.classList.add('update');
   setTimeout (() => {
     pomodores.classList.remove('update');
@@ -271,12 +292,14 @@ stopButton.addEventListener('click', function () {
 })
 
 setButton.addEventListener('click', function () {
-  userMinutes = Number(prompt('Quantos minutos de foco?'));
-  if (userMinutes) {
-    currentMinutes = userMinutes;
-  }
-  updateCounter(currentMinutes, 00);
+  // userMinutes = Number(prompt('Quantos minutos de foco?'));
+  // getMinutes();
+  showMessage('Quantos minutos de foco?', 99999999);
+  promptInput.classList.remove('hidden');
+  promptButton.classList.remove('hidden');
 })
+
+
 
 addMinutes.addEventListener('click', function () {
   updateCounter(currentMinutes + 5, currentSeconds);
