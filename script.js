@@ -58,7 +58,7 @@ const coffeeshopButton = document.querySelector('.coffeeshop path');
 const fireplaceButton = document.querySelector('.fireplace path');
 
 // SOUNDS
-const forestSound = new Audio('./sounds/floresta.wav'); // https://drive.google.com/file/d/1CRHkV72WUMdcqec5GT_KdsqFz0z3VAOA/view
+const forestSound = new Audio('.https://drive.google.com/file/d/1CRHkV72WUMdcqec5GT_KdsqFz0z3VAOA/view'); // https://drive.google.com/file/d/1CRHkV72WUMdcqec5GT_KdsqFz0z3VAOA/view
 const rainSound = new Audio('./sounds/chuva.wav'); // https://drive.google.com/file/d/1Ip8xBqAUJ-bty51Wz8JBtX_bWXCgA0P2/view
 const coffeeshopSound = new Audio('./sounds/cafeteria.wav'); // https://drive.google.com/file/d/1OxLKpCwg2wrxXFNUHgZxJ51QEt0ac5RA/view
 const fireplaceSound = new Audio('./sounds/lareira.wav'); // https://drive.google.com/file/d/1MakaBPxJvTa_whaSM3kEbRcxiVd1GRCB/view
