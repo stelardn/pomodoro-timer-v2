@@ -1,5 +1,5 @@
 # Pomodoro-timer.v2
-A version of pomodoro timer inspired by Forest app, developed on native JavaScript.
+A version of pomodoro timer inspired by Forest app, developed on pure JavaScript.
 
 ## Functions
 Rather than just a regular timer, this timer has the following functions:
